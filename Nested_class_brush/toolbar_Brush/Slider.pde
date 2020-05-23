@@ -30,15 +30,13 @@ class Slider {  //ref: https://processing.org/examples/scrollbar.html  //with so
     ratio = (float)sw / (float)widthtoheight;
     xpos = xp;
     ypos = yp-sheight/2;
-    spos = xpos + swidth/2 - sheight/2;
+    spos = xpos;
     newspos = spos;
     sposMin = xpos;
     sposMax = xpos + swidth - sheight;
     loose = l;
   }
   void Display() {
-
-
 
     noStroke();
     fill(204);
@@ -58,7 +56,7 @@ class Slider {  //ref: https://processing.org/examples/scrollbar.html  //with so
 
 
 
-  void Update() {
+  float Update() {
     if (overEvent()) {
       over = true;
     } else {
@@ -72,10 +70,12 @@ class Slider {  //ref: https://processing.org/examples/scrollbar.html  //with so
     }
     if (locked) {
       newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
+      
     }
     if (abs(newspos - spos) > 1) {
       spos = spos + (newspos-spos)/loose;
     }
+    return spos;
   }
 
   float constrain(float val, float minv, float maxv) {

@@ -16,14 +16,18 @@ int w = 40;
 int h = 20;
 int col;
 int counter=0;
+float width=1200;
+float height=800;
+float circleBrushSize=4;
 boolean buttonclicked=false;
+//float scale=1.5;//https://www.youtube.com/watch?v=SU4WRLKZ-Js
 void setup() {
  //////// ab = new Brush.Button();
+  strokeWeight(1);
   size(1200, 800);
   background(240);
   fill(255);
   rect(0, 0, 200, 800);
-  strokeWeight(1);
   stroke(0);
   line (200,770,1200,770);
   stroke(0);
@@ -35,7 +39,9 @@ void setup() {
   // rect( 500, 740 , 400 ,30 );
   //img1 = loadImage("seedTop.jpg");
   slider = new Slider(500, 760, 400, 30, 1);
-  brush = new Brush(5); //number of circles
+  
+  //print(circleBrushSize,"  ");
+  brush = new Brush(5,circleBrushSize); //number of circles
   //button = new Button(5, 5, 10, 10);
   /////////  deleteButton = new DeleteButton;
 buttons[0] = new Button(50,150,100,100,100);
@@ -47,7 +53,19 @@ for (int i = 1; i < buttons.length; i++) {
   
 
 }
+
+
 void draw() {
+  strokeWeight(4);
+  slider.Display();
+  for (int i = 0; i < buttons.length; i++) {
+    buttons[i].display();
+    
+  }
+  
+  brush = new Brush(15,circleBrushSize);
+
+if (mouseX > 200 && mouseX < width && mouseY < 730) {
   //float speed = abs(mouseX-pmouseX) + abs(mouseY-pmouseY);//got it from here https://forum.processing.org/one/topic/using-the-mouse-speed.html
   // println(speed,"  "); //this is how I understood the speed of the mouse, for making 'sd' twice bigger.
 if(buttonclicked==false){
@@ -95,27 +113,18 @@ else
     
     }
 }
-  slider.Display();
+}
+  
   slider.Update();
-  for (int i = 0; i < buttons.length; i++) {
-    buttons[i].display();
-    
-  }
+  circleBrushSize=slider.Update();
   
+  circleBrushSize = map(circleBrushSize, 500, 870, 5, 50);
+  print(circleBrushSize,"  ");
+  //print(Default,"  ");
+
   
- /// if (button) {
-    //background(255);
- ///   stroke(0);
- /// } else {
-    //background(0);
- ///   stroke(255);
-  ///}
-  ///fill(175);
- /// ellipse(x, y, w, h);
- /// if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
-  ///  button = !button;
-   /// start();
-  }
+}
+
 
 
 

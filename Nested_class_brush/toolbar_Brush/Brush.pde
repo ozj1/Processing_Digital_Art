@@ -6,14 +6,15 @@ class Brush {
 
   float x;
   float y;
-  float Default=4; //stroke size of the circles
+  float Default; //stroke size of the circles
   float sd; //variance
   float opacity=100;
   float speed; //mouse speed
   import java.util.Random; //Gaussian Random from Java
   Random generator;
-  Brush(float tempS) {
+  Brush(float tempS,float circleSize) {
     sd = tempS;
+    Default=circleSize;
     generator = new Random();
   }
 
@@ -48,7 +49,7 @@ class Brush {
       noFill();
        x = constrain(x, 200, 1200);
 
-        y = constrain(y, 0, 760);
+        y = constrain(y, 0, 700);
       circle(x, y, 8); //main component of the brush
     }
     if (speed>50) { //for returning to default 
@@ -128,6 +129,7 @@ class Brush {
       Start_func(255, 69, 0);
     }
     if ((keyPressed == true) && (key == 'p')) {   
+      scale(1.5);
       Start_func(255, 192, 203);
     }
     if ((keyPressed == true) && (key == 'w')) {   
