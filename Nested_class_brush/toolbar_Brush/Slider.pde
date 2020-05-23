@@ -1,10 +1,5 @@
 class Slider {  //ref: https://processing.org/examples/scrollbar.html  //with some changes of mine
 
-
-
-
-
-
   int swidth, sheight;    
   float xpos, ypos;       
   float spos, newspos;    

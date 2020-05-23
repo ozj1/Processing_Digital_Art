@@ -142,5 +142,10 @@ class Brush {
       }
       Start();
     }
+    
+    //if (mousePressed==true) {
+      
+        
+    //}
   }
 }

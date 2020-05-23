@@ -3,12 +3,12 @@
 //You can also move your mouse faster to make the brush smaller. You can change the color of my brush by pressing(&& holding) the first letter of these colos: red, green, blue,pink, orange, white, yellow. For black press "k".
 //If you got tired of your drawing, press DELETE and start over again.
 Brush brush;
-Button button;
+//Button button;
 Slider slider;
 //////////DeleteButton deleteButton;
 ///////Brush.Button ab;
 
-Button[] buttons = new Button[8];
+Button[] buttons = new Button[9];
 ///boolean button = false;
 int x = 100;
 int y = 750;
@@ -34,16 +34,18 @@ void setup() {
   // noStroke();
   // rect( 500, 740 , 400 ,30 );
   //img1 = loadImage("seedTop.jpg");
+  slider = new Slider(500, 760, 400, 30, 1);
   brush = new Brush(5); //number of circles
   //button = new Button(5, 5, 10, 10);
-for (int i = 0; i < buttons.length; i++) {
+  /////////  deleteButton = new DeleteButton;
+buttons[0] = new Button(50,150,100,100,100);
+for (int i = 1; i < buttons.length; i++) {
  
   buttons[i] = new Button(80,i*50+400 , 40, 20,col);
 
 }
-  slider = new Slider(500, 760, 400, 30, 1);
-/////////  deleteButton = new DeleteButton;
-button = new Button(50,150,100,100,100);
+  
+
 }
 void draw() {
   //float speed = abs(mouseX-pmouseX) + abs(mouseY-pmouseY);//got it from here https://forum.processing.org/one/topic/using-the-mouse-speed.html
@@ -56,39 +58,47 @@ if(buttonclicked==false){
 }
 else 
 {
+  
   for (int i = 0; i < buttons.length; i++) {
 
-    if (buttons[0].on) { 
-      buttons[i].Start_func2(255, 0, 0);
+    if (buttons[0].on) {  
+      setup();
+      
+      brush.Start();
+      //buttons[i].Start_func2(255, 255, 255);
     }
-    if (buttons[1].on) {   
+    if (buttons[1].on) { 
+      buttons[i].Start_func2(255, 0, 0);
+      
+    }
+    if (buttons[2].on) {  
       buttons[i].Start_func2(0, 255, 0);
     }
-    if (buttons[2].on) {   
+    if (buttons[3].on) {   
       buttons[i].Start_func2(0, 0, 255);
     }
-    if (buttons[3].on) {   
+    if (buttons[4].on) {   
       buttons[i].Start_func2(255, 255, 0);
     }
-    if (buttons[4].on) {   
+    if (buttons[5].on) {   
       buttons[i].Start_func2(0, 0, 0);
     }
-    if (buttons[5].on) {   
+    if (buttons[6].on) {   
       buttons[i].Start_func2(255, 69, 0);
     }
-    if (buttons[6].on) {   
+    if (buttons[7].on) {   
       buttons[i].Start_func2(255, 192, 203);
     }
-    if (buttons[7].on) {   
+    if (buttons[8].on) {   
       buttons[i].Start_func2(255, 255, 255);
     }
+    
     }
 }
   slider.Display();
   slider.Update();
   for (int i = 0; i < buttons.length; i++) {
     buttons[i].display();
-    button.display();
     
   }
   
@@ -110,6 +120,7 @@ else
 
 
 void mousePressed() {
+  counter=0;
   for (int i = 0; i < buttons.length; i++) {
 
       buttons[i].click(mouseX,mouseY);
@@ -128,5 +139,4 @@ void mousePressed() {
         buttonclicked=true;
       }
       
-   button.click(mouseX,mouseY);
 }
