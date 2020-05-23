@@ -1,4 +1,9 @@
+
+
 class Brush {
+  float mx;
+  float my;
+
   float x;
   float y;
   float Default=4; //stroke size of the circles
@@ -15,6 +20,7 @@ class Brush {
   void Start_func(int col1, int col2, int col3) {  //I made a copy of void start as a function to use it for my other voids such as void changeColor
     if (mousePressed) {
       float x = (float) generator.nextGaussian();
+        
       //sd = 15;
       speed = abs(mouseX-pmouseX) + abs(mouseY-pmouseY);//got it from here https://forum.processing.org/one/topic/using-the-mouse-speed.html
       if (speed>50) {
@@ -25,6 +31,7 @@ class Brush {
       float y = (float) generator.nextGaussian();
       float mean2 =mouseY;
       y = (y*sd)+ mean2; //same thing for Y
+     
       if (keyPressed==false) {  //this is for the default color of the brush(Rainbow)
         for (int i = 0; i < 500; i++) {
           float r1 = random(255);
@@ -39,6 +46,9 @@ class Brush {
 
       strokeWeight(Default);
       noFill();
+       x = constrain(x, 200, 1200);
+
+        y = constrain(y, 0, 760);
       circle(x, y, 8); //main component of the brush
     }
     if (speed>50) { //for returning to default 
@@ -46,6 +56,7 @@ class Brush {
     }
   }
   void Start() { //main void start
+   
     if (mousePressed) {
       float x = (float) generator.nextGaussian();
       //sd = 15;
@@ -71,6 +82,8 @@ class Brush {
 
       strokeWeight(Default);
       noFill();
+       x = constrain(x, 200, 1200);
+        y = constrain(y, 0, 760);
       circle(x, y, 8);
     }
 
@@ -79,6 +92,7 @@ class Brush {
     }
   }
   void Size() { //Size change of the brush
+   
     if (keyPressed==true) {
       if (keyCode == UP) {
         sd=sd+0.9;

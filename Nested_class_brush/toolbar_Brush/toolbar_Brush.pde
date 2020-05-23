@@ -15,7 +15,8 @@ int y = 750;
 int w = 40;
 int h = 20;
 int col;
-
+int counter=0;
+boolean buttonclicked=false;
 void setup() {
  //////// ab = new Brush.Button();
   size(1200, 800);
@@ -47,12 +48,42 @@ button = new Button(50,150,100,100,100);
 void draw() {
   //float speed = abs(mouseX-pmouseX) + abs(mouseY-pmouseY);//got it from here https://forum.processing.org/one/topic/using-the-mouse-speed.html
   // println(speed,"  "); //this is how I understood the speed of the mouse, for making 'sd' twice bigger.
-
+if(buttonclicked==false){
   brush.Start() ;
   brush.Size(); //UP && DOWN arrow keys.
   brush.BrushColor(); //by pressing the first letter of aforementioned colors
   brush.TryAgain(); //by pressing DELETE
+}
+else 
+{
+  for (int i = 0; i < buttons.length; i++) {
 
+    if (buttons[0].on) { 
+      buttons[i].Start_func2(255, 0, 0);
+    }
+    if (buttons[1].on) {   
+      buttons[i].Start_func2(0, 255, 0);
+    }
+    if (buttons[2].on) {   
+      buttons[i].Start_func2(0, 0, 255);
+    }
+    if (buttons[3].on) {   
+      buttons[i].Start_func2(255, 255, 0);
+    }
+    if (buttons[4].on) {   
+      buttons[i].Start_func2(0, 0, 0);
+    }
+    if (buttons[5].on) {   
+      buttons[i].Start_func2(255, 69, 0);
+    }
+    if (buttons[6].on) {   
+      buttons[i].Start_func2(255, 192, 203);
+    }
+    if (buttons[7].on) {   
+      buttons[i].Start_func2(255, 255, 255);
+    }
+    }
+}
   slider.Display();
   slider.Update();
   for (int i = 0; i < buttons.length; i++) {
@@ -80,8 +111,22 @@ void draw() {
 
 void mousePressed() {
   for (int i = 0; i < buttons.length; i++) {
-    buttons[i].click(mouseX, mouseY);
-   
+
+      buttons[i].click(mouseX,mouseY);
+      if (buttons[i].on==false){
+      counter++;
+      }
+
   }
+   
+  if(counter==buttons.length)
+      {
+      buttonclicked=false;
+      }
+      else
+      {
+        buttonclicked=true;
+      }
+      
    button.click(mouseX,mouseY);
 }
